@@ -1,12 +1,14 @@
 import mistletoe
 
-with open('./notes/msitletoe-dev-guide.md', 'r') as fin:
-    rendered = mistletoe.markdown(fin)
+def convert_md_html(filename):
 
-    print(rendered)
+    with open(f'./notes/{filename}.md', 'r') as fin:
+        rendered = mistletoe.markdown(fin)
 
-with open('out/out.html', 'w') as f:
-    f.write(rendered)
+        # print(rendered)
+
+    with open(f'out/{filename}.html', 'w') as f:
+        f.write(rendered)
 
 # from mistletoe import Document, HtmlRenderer
 

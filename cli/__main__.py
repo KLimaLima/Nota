@@ -22,6 +22,7 @@ basic_subparser = parser.add_subparsers(
 # }
 dest = "operands"
 
+# change this from "new" to "empty"
 new_parser = basic_subparser.add_parser("new", help="creates a new md file")
 # greet_parser.add_argument(**arg_template)
 new_parser.add_argument(dest=dest, nargs=1)
@@ -30,6 +31,10 @@ new_parser.set_defaults(func=basic.create_md)
 baru_parser = basic_subparser.add_parser("baru", help="creates a new md file")
 baru_parser.add_argument(dest=dest, nargs=1)
 baru_parser.set_defaults(func=basic.create_md)
+
+create_parser = basic_subparser.add_parser("create", help="converts")
+create_parser.add_argument(dest=dest, nargs=1)
+create_parser.set_defaults(func=basic.create_nota)
 
 args = parser.parse_args()
 args.func(*args.operands)
