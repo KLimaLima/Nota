@@ -5,3 +5,4 @@ node_modules
 notes/
 .venv
 out/
+__pycache__/

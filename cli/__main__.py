@@ -2,13 +2,36 @@ import argparse
 
 import cli.basic as basic
 
-parser = argparse.ArgumentParser()
+parser = argparse.ArgumentParser(
+    prog="nota",
+    description="Note taking CLI for Nota",
+    epilog="Thanks for using %(prog)s! :)")
 
-parser.add_argument("name")
-parser.add_argument("age")
+basic_subparser = parser.add_subparsers(
+    title="basic",
+    dest="name",
+    help="the basic utilities"
+)
+
+# arg_template = {
+    # "dest": "operands",
+    # "type": str,
+    # "nargs": 2,
+    # "metavar": "OPERAND",
+    # "help": "a numeric value",
+# }
+dest = "operands"
+
+new_parser = basic_subparser.add_parser("new", help="creates a new md file")
+# greet_parser.add_argument(**arg_template)
+new_parser.add_argument(dest=dest, nargs=1)
+new_parser.set_defaults(func=basic.create_md)
+
+baru_parser = basic_subparser.add_parser("baru", help="creates a new md file")
+baru_parser.add_argument(dest=dest, nargs=1)
+baru_parser.set_defaults(func=basic.create_md)
 
 args = parser.parse_args()
+args.func(*args.operands)
 
-print(basic.greet(args.name, args.age))
-
-# uv run -m cli <name> <age>
+# uv run -m cli new <filename>
