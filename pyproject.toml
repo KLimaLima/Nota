@@ -8,3 +8,6 @@ dependencies = [
     "jinja2>=3.1.6",
     "mistletoe>=1.5.1",
 ]
+
+[project.scripts]
+nota = "cli.__main__:main"
