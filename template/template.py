@@ -1,31 +1,34 @@
 from jinja2 import Environment, FileSystemLoader
 
-# max_score = 100
-# test_name = "Python Challenge"
-# students = [
-#     {"name": "Sandrine",  "score": 100},
-#     {"name": "Gergeley", "score": 87},
-#     {"name": "Frieda", "score": 92},
-# ]
+def render_template(content_html):
 
+    environment = Environment(loader=FileSystemLoader("template/"))
+    template = environment.get_template(f'{content_html}.html')
 
+    content = template.render()
 
-environment = Environment(loader=FileSystemLoader("template/"))
-template = environment.get_template("out.html")
+    with open("./src/index.html", mode="w", encoding="utf-8") as f:
 
-content = template.render()
+        f.write(content)
 
-with open("result.html", mode="w", encoding="utf-8") as f:
+def create_template(content_html):
 
-    f.write(content)
+    template_tag_start = '''{% extends "base.html" %}
+    
+    {% block content %}'''
 
-# for student in students:
-#     filename = f"message_{student['name'].lower()}.txt"
-#     content = template.render(
-#         student,
-#         max_score=max_score,
-#         test_name=test_name
-#     )
-#     with open(filename, mode="w", encoding="utf-8") as message:
-#         message.write(content)
-#         print(f"... wrote {filename}")
+    content = ''
+
+    template_tag_end = '{% endblock content %}'
+
+    with open(f'out/{content_html}.html', mode="r") as f:
+
+        content = f.readlines()
+
+    with open(f'template/{content_html}.html', mode="w") as f:
+
+        f.writelines(template_tag_start)
+
+        f.writelines(content)
+
+        f.writelines(template_tag_end)

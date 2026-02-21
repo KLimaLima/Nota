@@ -1,4 +1,5 @@
 import parser.parser as parser
+import template.template as template
 
 def greet(name):
 
@@ -16,3 +17,7 @@ def create_nota(filename):
     print(type(filename))
 
     parser.convert_md_html(filename)
+
+    template.create_template(filename)
+
+    template.render_template(filename)
