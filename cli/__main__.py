@@ -32,7 +32,7 @@ baru_parser = basic_subparser.add_parser("baru", help="creates a new md file")
 baru_parser.add_argument(dest=dest, nargs=1)
 baru_parser.set_defaults(func=basic.create_md)
 
-create_parser = basic_subparser.add_parser("create", help="converts")
+create_parser = basic_subparser.add_parser("create", help="converts html to stylised webpage")
 create_parser.add_argument(dest=dest, nargs=1)
 create_parser.set_defaults(func=basic.create_nota)
 

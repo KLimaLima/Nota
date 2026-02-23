@@ -1,3 +1,5 @@
+import subprocess
+
 import parser.parser as parser
 import template.template as template
 
@@ -21,3 +23,5 @@ def create_nota(filename):
     template.create_template(filename)
 
     template.render_template(filename)
+
+    ans = subprocess.check_output(["npm run build"], text=True, shell=True)
