@@ -6,3 +6,6 @@ notes/
 .venv
 out/
 __pycache__/
+
+# misc
+result/
